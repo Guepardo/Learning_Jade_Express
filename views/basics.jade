@@ -1,0 +1,81 @@
+extends layout
+
+block content
+	h1 O básico sobre Jade.
+	p.
+		Quantidade de vezes que essa sessão visitou esta tela #{maintainer.count}
+	h2 Exemplo 1
+	p.
+		Provavelmente ele não irá aparecer, porque é apenas um exercícios de hiearaquia de tags
+	//Cria uma div e coloca os elementos abaixo dentro da mesma no mesmo nível.
+	div
+		address
+		i
+		strong
+
+	h2 Exemplo 2: 
+	p.
+		Apenas escrevendo um texto de várias linhas nesta tag p
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	p.
+		Apenas fazendo a mesma coisa que acima, mas de uma forma diferente Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+
+	h2 Exemplo 3: 
+	p.
+		Adicionando valores aos atributos html
+	//Primeira forma de fazer: 
+	p(id='teste')
+	button(class='btn', data-action='nada') Botão de teste
+	//Segunda forma de fazer isso: 
+	p#teste
+	button.btn(data-action='nada') Botão de teste
+	
+	h2 Exemplo 4: 
+	p.
+		Resgatando variáveis do código js.
+	p.
+		Mainteiner: #{maintainer.name}
+	table
+		tr
+			td Twitter
+			td #{maintainer.twitter}
+		tr
+			td Blog
+			td #{maintainer.blog}
+	//Alterando atributos html
+	h2	Exemplo 5: 
+	//- Há diferenças quando é neessário usar as variáveis dentro de () e fora deles. ATENÇÃO. 
+	table(name= maintainer.name)
+		tr
+			td(style='width:'+(100/2)+'%').
+				Twitter
+			td  #{maintainer.twitter}
+		tr
+			td(style='width:'+(100/2)+'%').
+				Blog
+			td #{maintainer.blog}
+
+	h2	Exemplo 5: 
+	p.
+		Carregando variáveis dentro do template. 
+
+	- var user = { name : 'Allyson Maciel Guimarães'} 
+	if user.name
+		div.welcomebox
+			p.
+				Wellcome, #{user.name}
+	else
+		div.loginbox
+			form(name='login', action='/login', method='POST')
+				input(type='text', name='user')
+				input(type='password', name='password')
+				input(type='submit', value='login')
+
+
+
+	
